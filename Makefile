@@ -8,7 +8,7 @@ MLX_A		=	$(addprefix $(MLX), libmlx.a)
 
 CC			=	gcc
 INCLUDE 	=	include
-CFLAGS		=	-Wall -Wextra -Werror -I$(INCLUDE)
+CFLAGS		=	-Wall -Wextra -Werror
 RM			=	rm -f
 SRCS		=	fdf.c \
 
@@ -17,7 +17,7 @@ OBJS		=	$(SRCS:%.c=%.o)
 all:			$(NAME)
 
 $(NAME):		$(OBJS) $(LIBFT_A) $(GNL_A) $(MLX_A)
-				@$(CC) $(CFLAGS) $(OBJS) -Lmlx_linux -lmlx_Linux -lz -lX11 -lXext -L$(LIBFT) -lft -L$(GNL) -lg  -L$(MLX) -lm -o $(NAME)
+				@$(CC) $(OBJS) -Lmlx_linux -lmlx_Linux -lz -lX11 -lXext -L$(LIBFT) -lft -L$(GNL) -lg  -L$(MLX) -lm -o $(NAME)
 				@echo "Linked into executable \033[0;32mfdf\033[0m."
 
 $(LIBFT_A):
@@ -33,9 +33,6 @@ $(MLX_A):
 				@echo "Compiled $(MLX_A)."
 
 
-.c.o:
-				@$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $(<:.c=.o)
-				@echo "Compiling $<."
 
 localclean:
 				@$(RM) $(OBJS)

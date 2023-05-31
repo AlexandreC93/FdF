@@ -12,6 +12,7 @@
 
 #include "get_next_line_bonus.h"
 
+
 char	*ft_this_line(char	*buffer)
 {
 	char	*line;
@@ -127,38 +128,38 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-int	main(void)
-{
-	int	fd;
-    int fd2;
-    int i = 0;
+// int	main(void)
+// {
+// 	int	fd;
+//     // int fd2;
+//     int i = 0;
 
-	char	*s;
-    char    *s2;
+// 	char	*s;
+//     // char    *s2;
 
-	fd = open("text.txt", O_RDONLY);
-	fd2 = open("text2.txt", O_RDONLY);
-	s = get_next_line(fd);
-    s2 = get_next_line(fd2);
+// 	fd = open("text.txt", O_RDONLY);
+// 	// fd2 = open("text2.txt", O_RDONLY);
+// 	s = get_next_line(fd);
+//     // s2 = get_next_line(fd2);
 
-	while (i < 20)
-	{
-		printf("%s\n", s);
-		free(s);
-		s = get_next_line(fd);
-        i++;
-	}
-	write(1, "CHECK", 5);
-    i = 0;
-	while (i < 20)
-	{
-		printf("%s\n", s2);
-		free(s2);
-		s2 = get_next_line(fd2);
-        i++;
-	}
-	printf("%d", BUFFER_SIZE);
-	close(fd);
-	return (0);
-}
+// 	// while (i < 20)
+// 	// {
+// 	// 	printf("%s\n", s);
+// 	// 	free(s);
+// 	// 	s = get_next_line(fd);
+//     //     i++;
+// 	// }
+// 	// write(1, "CHECK", 5);
+//     // i = 0;
+// 	// while (i < 20)
+// 	// {
+// 	// 	printf("%s\n", s2);
+// 	// 	free(s2);
+// 	// 	s2 = get_next_line(fd2);
+//     //     i++;
+// 	// }
+// 	// printf("%d", BUFFER_SIZE);
+// 	close(fd);
+// 	return (0);
+// }
 

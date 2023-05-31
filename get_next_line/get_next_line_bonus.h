@@ -22,10 +22,12 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <stdint.h>
+# include <limits.h>
+# include "../libft/libft.h"
 
 char	*ft_strjoin(const char *s1, const char *s2);
 void	*ft_calloc(size_t nmemb, size_t size);
-// int		ft_strlen(const char *str);
+size_t		ft_strlen(const char *s);
 char	*reajoin(char *buffer, char *res);
 void	ft_bzero(void *s, size_t n);
 char	*ft_strchr(const char *str, int c);
