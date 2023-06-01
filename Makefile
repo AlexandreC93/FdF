@@ -1,9 +1,7 @@
 NAME		=	FdF
 LIBFT		=	libft/
-GNL			=	get_next_line/
 MLX			=	mlx_linux/minilibx-linux/
 LIBFT_A		=	$(addprefix $(LIBFT), libft.a)
-GNL_A		=	$(addprefix $(GNL), lgnl.a)
 MLX_A		=	$(addprefix $(MLX), libmlx.a)
 
 CC			=	gcc
@@ -16,17 +14,17 @@ OBJS		=	$(SRCS:%.c=%.o)
 
 all:			$(NAME)
 
-$(NAME):		$(OBJS) $(LIBFT_A) $(GNL_A) $(MLX_A)
-				@$(CC) $(OBJS) -Lmlx_linux -lmlx_Linux -lz -lX11 -lXext -L$(LIBFT) -lft -L$(GNL) -lg  -L$(MLX) -lm -o $(NAME)
+$(NAME):		$(OBJS) $(LIBFT_A) $(MLX_A)
+				@$(CC) $(OBJS) -Lmlx_linux -lmlx_Linux -lz -lX11 -lXext -L$(LIBFT) -lft -L$(MLX) -lm -o $(NAME)
 				@echo "Linked into executable \033[0;32mfdf\033[0m."
 
 $(LIBFT_A):
 				@$(MAKE) -s -C $(LIBFT)
 				@echo "Compiled $(LIBFT_A)."
 
-$(GNL_A):
-				@$(MAKE) -s -C $(GNL)
-				@echo "Compiled $(GNL_A)."
+# $(GNL_A):
+# 				@$(MAKE) -s -C $(GNL)
+# 				@echo "Compiled $(GNL_A)."
 
 $(MLX_A):
 				@$(MAKE) -s -C $(MLX)
@@ -41,16 +39,13 @@ localclean:
 clean:			localclean
 				@$(MAKE) clean -s -C $(LIBFT)
 				@echo "Clean libft."
-				@$(MAKE) clean -s -C $(GNL)
-				@echo "Clean gnl."
+				# 
 				@$(MAKE) clean -s -C $(MLX)
 				@echo "Clean mlx."
 
 fclean:			localclean
 				@$(MAKE) fclean -s -C $(LIBFT)
 				@echo "Full clean libft."
-				@$(MAKE) fclean -s -C $(GNL)
-				@echo "Full clean gnl."
 				@$(MAKE) clean -s -C $(MLX)
 				@echo "Clean mlx."
 				@$(RM) $(NAME)
@@ -59,3 +54,7 @@ fclean:			localclean
 re:				fclean all
 
 .PHONY:			all clean fclean re localclean bonus
+
+
+# @$(MAKE) clean -s -C $(GNL)
+# 				# @echo "Clean gnl."

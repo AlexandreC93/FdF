@@ -91,6 +91,7 @@ char	**ft_split(const char *str, char charset)
 			str++;
 		while (*str && (!ft_is_space(*str, charset)))
 			arr[i][j++] = *str++;
+		// printf("{%s}\n", arr[i]);
 		i++;
 	}
 	return (arr);
