@@ -5,8 +5,7 @@ LIBFT_A		=	$(addprefix $(LIBFT), libft.a)
 MLX_A		=	$(addprefix $(MLX), libmlx.a)
 
 CC			=	gcc
-INCLUDE 	=	include
-CFLAGS		=	-Wall -Wextra -Werror
+INCLUDE 	=	inclue
 RM			=	rm -f
 SRCS		=	fdf.c \
 
