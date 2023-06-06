@@ -1,12 +1,12 @@
 #include "fdf.h"
 
-void my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char *dst;
+// void my_mlx_pixel_put(t_data *data, int x, int y, int color)
+// {
+// 	char *dst;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
+// 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+// 	*(unsigned int *)dst = color;
+// }
 
 // static t_fdf	*ft_init(const char *path)
 // {
@@ -81,22 +81,29 @@ void	*sort_tab(char **s, t_map map)
 	return (0);
 }
 
+
 int main(int ac, char **av)
 {
 	char *str;
 	char **s;
 	t_map *map;
+	char	*line;
+	int		gnl;
 	int fd;
+	int	i;
 
 	map = (t_map *)malloc(sizeof(t_map));
+	i = ft_get_height(av[1]);
+	// printf("%d", i);
 	if (ac > 1)
 	{
 		fd = open(av[1], O_RDONLY);
 		str = "";
 	}
-	while (str)
+	while (gnl)
 	{
-		str = get_next_line(fd);
+		gnl = get_next_line(fd, &line);
+		printf("%s\n", line);
 		if (str)
 		{
 			s = ft_split(str, ' ');

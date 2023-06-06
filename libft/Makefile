@@ -37,8 +37,6 @@ SRC = \
 	ft_isdigit.c \
 	ft_isascii.c \
 	./get_next_line/get_next_line_bonus.c \
-	./get_next_line/get_next_line_utils_bonus.c \
-
 
 BONUS = ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c \
 		ft_lstdelone.c ft_lstiter.c ft_lstlast.c \

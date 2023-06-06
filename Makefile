@@ -8,6 +8,8 @@ CC			=	gcc
 INCLUDE 	=	inclue
 RM			=	rm -f
 SRCS		=	fdf.c \
+				map.c \
+				utils.c \
 
 OBJS		=	$(SRCS:%.c=%.o)
 

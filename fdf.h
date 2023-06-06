@@ -85,7 +85,9 @@ typedef struct s_data
 	int endian;
 } t_data;
 
-void	ft_return_error(const char *err_msg, int system_function);
+int	ft_get_height(char *filename);
+int	ft_get_width(char *filename);
+void	ft_return_error(char *err_msg, int system_function);
 // static t_fdf	*ft_init(const char *path);
 
 
