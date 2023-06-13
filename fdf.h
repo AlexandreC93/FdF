@@ -27,6 +27,8 @@ typedef struct s_point
 	int	x;
 	int	y;
 	int	z;
+	int	*tab;
+	int	nb_points;
 	int	color;
 	int	reverse;
 }				t_point;
@@ -85,9 +87,10 @@ typedef struct s_data
 	int endian;
 } t_data;
 
-int	ft_get_height(char *filename);
-int	ft_get_width(char *filename);
+int	ft_height(char *filename);
+int	ft_width(char *filename);
 void	ft_return_error(char *err_msg, int system_function);
+void draw_line(t_data *data, int x0, int y0, int x1, int y1);
 // static t_fdf	*ft_init(const char *path);
 
 

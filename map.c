@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-int	ft_get_height(char *filename)
+int	ft_height(char *filename)
 {
 	int		fd;
 	int		height;
@@ -21,7 +21,7 @@ int	ft_get_height(char *filename)
 	return (height);
 }
 
-int	ft_get_width(char *filename)
+int	ft_width(char *filename)
 {
 	int		fd;
 	int		width;
@@ -46,4 +46,9 @@ int	ft_get_width(char *filename)
 	if (close(fd) == -1)
 		ft_return_error("close error", 1);
 	return (width);
+}
+
+void draw_line(t_data *data, int x0, int y0, int x1, int y1)
+{
+    
 }
