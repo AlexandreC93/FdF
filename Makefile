@@ -5,11 +5,17 @@ LIBFT_A		=	$(addprefix $(LIBFT), libft.a)
 MLX_A		=	$(addprefix $(MLX), libmlx.a)
 
 CC			=	gcc
-INCLUDE 	=	inclue
 RM			=	rm -f
 SRCS		=	fdf.c \
-				map.c \
-				utils.c \
+				./srcs/map.c \
+				./srcs/utils.c \
+				./srcs/hooks.c \
+				./srcs/mouse.c \
+				./srcs/draw.c \
+				./srcs/alg.c \
+				./srcs/line.c \
+				./srcs/project.c \
+				./srcs/keyboard.c \
 
 OBJS		=	$(SRCS:%.c=%.o)
 
@@ -55,7 +61,3 @@ fclean:			localclean
 re:				fclean all
 
 .PHONY:			all clean fclean re localclean bonus
-
-
-# @$(MAKE) clean -s -C $(GNL)
-# 				# @echo "Clean gnl."
