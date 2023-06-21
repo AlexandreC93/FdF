@@ -1,11 +1,11 @@
 #include "fdf.h"
 
-static t_fdf	*ft_start(const char *access)
+static t_fdf	*ft_start(const char *name)
 {
 	t_fdf	*env;
 	char	*title;
 
-	title = ft_strjoin("FdF - ", access);
+	title = ft_strjoin("FdF - ", name);
 	env = (t_fdf *)malloc(sizeof(t_fdf));
 	if (!env)
 		ft_error("malloc error", 1);
