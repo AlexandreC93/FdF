@@ -1,9 +1,9 @@
 #include "fdf.h"
 
-static t_fdf	*ft_start(const char *name)
+static t_fdf *ft_start(const char *name)
 {
-	t_fdf	*env;
-	char	*title;
+	t_fdf *env;
+	char *title;
 
 	title = ft_strjoin("FdF - ", name);
 	env = (t_fdf *)malloc(sizeof(t_fdf));
@@ -20,7 +20,7 @@ static t_fdf	*ft_start(const char *name)
 	if (!env->img)
 		ft_error("error initializing image", 1);
 	env->data_addr = mlx_get_data_addr(env->img, &env->bpp, &env->size_line,
-			&env->endian);
+									   &env->endian);
 	env->map = NULL;
 	env->camera = NULL;
 	env->mouse = (t_mouse *)malloc(sizeof(t_mouse));
@@ -29,15 +29,15 @@ static t_fdf	*ft_start(const char *name)
 	return (env);
 }
 
-static t_camera	*ft_camera_init(t_fdf *env)
+static t_camera *ft_camera_init(t_fdf *env)
 {
-	t_camera	*camera;
+	t_camera *camera;
 
 	camera = (t_camera *)malloc(sizeof(t_camera));
 	if (!camera)
 		ft_error("error initializing camera", 1);
 	camera->zoom = ft_min(WIDTH / env->map->width / 2,
-			HEIGHT / env->map->height / 2);
+						  HEIGHT / env->map->height / 2);
 	camera->x_angle = -0.615472907;
 	camera->y_angle = -0.523599;
 	camera->z_angle = 0.615472907;
@@ -48,9 +48,9 @@ static t_camera	*ft_camera_init(t_fdf *env)
 	return (camera);
 }
 
-static t_map	*ft_map_init(void)
+static t_map *ft_map_init(void)
 {
-	t_map	*map;
+	t_map *map;
 
 	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
@@ -63,39 +63,11 @@ static t_map	*ft_map_init(void)
 	return (map);
 }
 
-// void fill_tab(t_point *points, char **av, t_map *map)
-// {
-// 	char *line;
-// 	int gnl;
-// 	char **buffer;
-// 	int fd;
-// 	int i;
-// 	int j;
-
-// 	gnl = 1;
-// 	j = 0;
-// 	points->tab = malloc(sizeof(int) * points->nb_points);
-// 	fd = open(av[1], O_RDONLY);
-// 	i = 0;
-// 	while (gnl)
-// 	{
-// 		gnl = get_next_line(fd, &line);
-// 		if (gnl == 0)
-// 			break;
-// 		buffer = ft_split(line, ' ');
-// 		while (i < points->nb_points / map->height)
-// 			points->tab[j++] = ft_atoi(buffer[i++]);
-// 		i = 0;
-// 	}
-// }
-
 int main(int ac, char **av)
 {
 	t_map *map;
 	t_point *points;
 	t_fdf *env;
-
-	int i;
 
 	if (ac == 2)
 	{
@@ -107,24 +79,5 @@ int main(int ac, char **av)
 		ft_draw(env->map, env);
 		mlx_loop(env->mlx);
 	}
-
-	// map = (t_map *)malloc(sizeof(t_map));
-	// points = (t_point *)malloc(sizeof(t_point));
-	// env = (t_fdf *)malloc(sizeof(t_fdf));
-	// env->mlx = mlx_init();
-	// env->win = mlx_new_window(env->mlx, 800, 600, "HELLO");
-	// map->height = ft_height(av[1]);
-	//  //printf("%d\n", map->height);
-	// map->width = ft_width(av[1]);
-	// //printf("%d\n", map->width);
-	// points->nb_points = map->width * map->height;
-	// if (ac > 1)
-	// 	fill_tab(points, av, map);
-	// i = 0;
-	// while (i < points->nb_points)
-	// {
-	// 	printf("[%d]", points->tab[i++]);
-	// }
-	// mlx_loop(fdf->mlx);
 	return (0);
 }

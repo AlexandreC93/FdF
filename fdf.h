@@ -2,6 +2,7 @@
 #define FDF_H
 
 # include "./libft/get_next_line/get_next_line_bonus.h"
+# include "./libft/libft.h"
 # include "./mlx_linux/minilibx-linux/mlx.h"
 # include <math.h>
 # include <fcntl.h>
@@ -17,14 +18,16 @@
 #define ARROW_UP 126
 #define MINUS 27
 #define PLUS 24
-#define SPACE 49
-#define KEY_R 15
+#define SPACE 65
+#define KEY_R 27
 #define MOUSE_CLICK_LEFT 1
 #define MOUSE_CLICK_RIGHT 2
 #define MOUSE_CLICK_MIDDLE 3
 #define MOUSE_WHEEL_UP 4
 #define MOUSE_WHEEL_DOWN 5
-#define ESCAPE 53
+#define ESCAPE 9
+#define M_PI       3.14159265358979323846
+
 
 typedef struct s_point
 {
@@ -93,7 +96,8 @@ typedef struct s_data
 
 int ft_height(char *filename);
 int ft_width(char *filename);
-void draw_line(t_data *data, int x0, int y0, int x1, int y1);
+// void draw_line(t_data *data, int x0, int y0, int x1, int y1);
+// static t_fdf	*ft_init(const char *path);
 void ft_check(char *filename, t_map *map);
 void ft_draw(t_map *map, t_fdf *env);
 void ft_pixel(t_fdf *env, int x, int y, int color);

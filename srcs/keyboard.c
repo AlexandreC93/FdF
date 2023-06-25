@@ -1,7 +1,8 @@
 #include "../fdf.h"
 
-static void	ft_reset(t_fdf *env)
+static void ft_reset(t_fdf *env)
 {
+	printf("reset\n");
 	env->camera->x_offset = 0;
 	env->camera->y_offset = 0;
 	if (env->camera->iso)
@@ -18,11 +19,13 @@ static void	ft_reset(t_fdf *env)
 	}
 	env->camera->z_height = 1;
 	env->camera->zoom = ft_min(WIDTH / env->map->width / 2,
-			HEIGHT / env->map->height / 2);
+							   HEIGHT / env->map->height / 2);
 }
 
-static void	ft_toggle_projection(t_fdf *env)
+static void ft_toggle_projection(t_fdf *env)
 {
+	printf("toggle\n");
+
 	if (env->camera->iso)
 	{
 		env->camera->x_angle = -0.523599;
@@ -38,11 +41,12 @@ static void	ft_toggle_projection(t_fdf *env)
 	env->camera->iso = !env->camera->iso;
 }
 
-static void	ft_mod_height(int code, t_fdf *env)
+static void ft_mod_height(int code, t_fdf *env)
 {
-	if (code == MINUS)
+	printf("modheight\n");
+	if (code == MINUS || code == 0x2d || code == 0xffad)
 		env->camera->z_height += 0.1;
-	else if (code == PLUS)
+	else if (code == PLUS || code == 0x2b || code == 0xffab)
 		env->camera->z_height -= 0.1;
 	if (env->camera->z_height < 0.1)
 		env->camera->z_height = 0.1;
@@ -50,33 +54,34 @@ static void	ft_mod_height(int code, t_fdf *env)
 		env->camera->z_height = 10;
 }
 
-static void	ft_translate(int code, t_fdf *env)
+static void ft_translate(int code, t_fdf *env)
 {
-	if (code == ARROW_LEFT)
+	printf("translate\n");
+	if (code == ARROW_LEFT || code == 0xff51)
 		env->camera->x_offset -= 10;
-	else if (code == ARROW_RIGHT)
+	else if (code == ARROW_RIGHT || code == 0xff53)
 		env->camera->x_offset += 10;
-	else if (code == ARROW_DOWN)
+	else if (code == ARROW_DOWN || code == 0xff54)
 		env->camera->y_offset += 10;
-	else if (code == ARROW_UP)
+	else if (code == ARROW_UP || code == 0xff52)
 		env->camera->y_offset -= 10;
 }
 
-int	ft_key(int code, void *params)
+int ft_key(int code, void *params)
 {
-	t_fdf	*env;
-
+	t_fdf *env;
+	printf("testsss");
 	env = (t_fdf *)params;
-	if (code == ARROW_DOWN || code == ARROW_LEFT || code == ARROW_UP
-		|| code == ARROW_RIGHT)
+	if (code == ARROW_DOWN || code == 0xff54 || code == ARROW_LEFT
+		|| code == 0xff51 || code == ARROW_UP || code == 0xff52 || code == ARROW_RIGHT || code == 0xff53)
 		ft_translate(code, env);
-	else if (code == MINUS || code == PLUS)
+	else if (code == MINUS || code == 0xffad || code == PLUS || code == 0xffab || code == 0x2d || code == 0x2b)
 		ft_mod_height(code, env);
-	else if (code == SPACE)
+	else if (code == SPACE || code == 0x20)
 		ft_toggle_projection(env);
-	else if (code == KEY_R)
+	else if (code == KEY_R || code == 0x72)
 		ft_reset(env);
-	else if (code == ESCAPE)
+	else if (code == ESCAPE || code == 0xff1b)
 		ft_close(env);
 	ft_draw(env->map, env);
 	return (0);

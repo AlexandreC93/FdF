@@ -1,63 +1,59 @@
-NAME		=	FdF
-LIBFT		=	libft/
-MLX			=	mlx_linux/minilibx-linux/
-LIBFT_A		=	$(addprefix $(LIBFT), libft.a)
-MLX_A		=	$(addprefix $(MLX), libmlx.a)
+NAME        = FdF
+LIBFT       = ./libft/
+MLX         = mlx_linux/minilibx-linux/
+LIBFT_A     = $(addprefix $(LIBFT), libft.a)
+MLX_A       = $(addprefix $(MLX), libmlx.a)
+MLXF		=  -Lmlx_linux -lmlx_Linux
 
-CC			=	gcc
-RM			=	rm -f
-SRCS		=	fdf.c \
-				./srcs/map.c \
-				./srcs/utils.c \
-				./srcs/hooks.c \
-				./srcs/mouse.c \
-				./srcs/draw.c \
-				./srcs/alg.c \
-				./srcs/line.c \
-				./srcs/project.c \
-				./srcs/keyboard.c \
+CC          = gcc
+RM          = rm -f
+SRCS        = fdf.c \
+              ./srcs/map.c \
+              ./srcs/utils.c \
+              ./srcs/hooks.c \
+              ./srcs/mouse.c \
+              ./srcs/draw.c \
+              ./srcs/alg.c \
+              ./srcs/line.c \
+              ./srcs/project.c \
+              ./srcs/keyboard.c \
 
-OBJS		=	$(SRCS:%.c=%.o)
+OBJS = $(SRCS:%.c=%.o)
 
-all:			$(NAME)
+all: $(NAME)
 
-$(NAME):		$(OBJS) $(LIBFT_A) $(MLX_A)
-				@$(CC) $(OBJS) -Lmlx_linux -lmlx_Linux -lz -lX11 -lXext -L$(LIBFT) -lft -L$(MLX) -lm -o $(NAME)
-				@echo "Linked into executable \033[0;32mfdf\033[0m."
+$(NAME): $(OBJS) $(LIBFT_A) $(MLX_A)
+	@$(CC) $(OBJS) $(MLXF) -L$(LIBFT) -lft -L$(MLX) -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	@echo "Linked into executable \033[0;32m$(NAME)\033[0m."
+
+%.o: %.c
+	$(CC) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 $(LIBFT_A):
-				@$(MAKE) -s -C $(LIBFT)
-				@echo "Compiled $(LIBFT_A)."
-
-# $(GNL_A):
-# 				@$(MAKE) -s -C $(GNL)
-# 				@echo "Compiled $(GNL_A)."
+	@$(MAKE) -s -C $(LIBFT)
+	@echo "Compiled $(LIBFT_A)."
 
 $(MLX_A):
-				@$(MAKE) -s -C $(MLX)
-				@echo "Compiled $(MLX_A)."
-
-
+	@$(MAKE) -s -C $(MLX)
+	@echo "Compiled $(MLX_A)."
 
 localclean:
-				@$(RM) $(OBJS)
-				@echo "Removed object files."
+	@$(RM) $(OBJS)
+	@echo "Removed object files."
 
-clean:			localclean
-				@$(MAKE) clean -s -C $(LIBFT)
-				@echo "Clean libft."
-				# 
-				@$(MAKE) clean -s -C $(MLX)
-				@echo "Clean mlx."
+clean: localclean
+	@$(MAKE) clean -s -C $(LIBFT)
+	@echo "Cleaned libft."
+	@$(MAKE) clean -s -C $(MLX)
+	@echo "Cleaned MLX."	
+fclean: localclean
+	@$(MAKE) fclean -s -C $(LIBFT)
+	@echo "Fully cleaned libft."
+	@$(MAKE) clean -s -C $(MLX)
+	@echo "Cleaned MLX."
+	@$(RM) $(NAME)
+	@echo "Removed executable."
 
-fclean:			localclean
-				@$(MAKE) fclean -s -C $(LIBFT)
-				@echo "Full clean libft."
-				@$(MAKE) clean -s -C $(MLX)
-				@echo "Clean mlx."
-				@$(RM) $(NAME)
-				@echo "Removed executable."
+re: fclean all
 
-re:				fclean all
-
-.PHONY:			all clean fclean re localclean bonus
+.PHONY: all clean fclean re localclean
