@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mouse.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lcadinot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/26 17:57:49 by lcadinot          #+#    #+#             */
+/*   Updated: 2023/01/26 17:57:52 by lcadinot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../fdf.h"
 
 static void	ft_zoom(int button, t_fdf *env)
@@ -18,7 +30,7 @@ int	ft_mouse_down(int button, int x, int y, void *params)
 	env = (t_fdf *)params;
 	if (button == MOUSE_WHEEL_UP || button == MOUSE_WHEEL_DOWN)
 		ft_zoom(button, env);
-	else if (button == MOUSE_CLICK_LEFT || button == MOUSE_CLICK_RIGHT
+	else if (button == MOUSE_CLICK_LEFT || button == MOUSE_CLICK_RIGHT 
 		|| button == MOUSE_CLICK_MIDDLE)
 	{
 		env->mouse->button = button;
@@ -35,7 +47,7 @@ int	ft_mouse_up(int button, int x, int y, void *params)
 	(void)x;
 	(void)y;
 	env = (t_fdf *)params;
-	if (button == MOUSE_CLICK_LEFT || button == MOUSE_CLICK_RIGHT
+	if (button == MOUSE_CLICK_LEFT || button == MOUSE_CLICK_RIGHT 
 		|| button == MOUSE_CLICK_MIDDLE)
 		env->mouse->button = 0;
 	return (0);

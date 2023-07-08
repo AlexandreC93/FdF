@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lcadinot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/26 17:57:49 by lcadinot          #+#    #+#             */
+/*   Updated: 2023/01/26 17:57:52 by lcadinot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
-static t_fdf *ft_start(const char *name)
+static t_fdf	*ft_start(const char *name)
 {
-	t_fdf *env;
-	char *title;
+	t_fdf	*env;
+	char	*title;
 
 	title = ft_strjoin("FdF - ", name);
 	env = (t_fdf *)malloc(sizeof(t_fdf));
@@ -20,7 +32,7 @@ static t_fdf *ft_start(const char *name)
 	if (!env->img)
 		ft_error("error initializing image", 1);
 	env->data_addr = mlx_get_data_addr(env->img, &env->bpp, &env->size_line,
-									   &env->endian);
+			&env->endian);
 	env->map = NULL;
 	env->camera = NULL;
 	env->mouse = (t_mouse *)malloc(sizeof(t_mouse));
@@ -29,15 +41,15 @@ static t_fdf *ft_start(const char *name)
 	return (env);
 }
 
-static t_camera *ft_camera_init(t_fdf *env)
+static t_camera	*ft_camera_init(t_fdf *env)
 {
-	t_camera *camera;
+	t_camera	*camera;
 
 	camera = (t_camera *)malloc(sizeof(t_camera));
 	if (!camera)
 		ft_error("error initializing camera", 1);
 	camera->zoom = ft_min(WIDTH / env->map->width / 2,
-						  HEIGHT / env->map->height / 2);
+			HEIGHT / env->map->height / 2);
 	camera->x_angle = -0.615472907;
 	camera->y_angle = -0.523599;
 	camera->z_angle = 0.615472907;
@@ -48,9 +60,9 @@ static t_camera *ft_camera_init(t_fdf *env)
 	return (camera);
 }
 
-static t_map *ft_map_init(void)
+static t_map	*ft_map_init(void)
 {
-	t_map *map;
+	t_map	*map;
 
 	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
@@ -63,11 +75,9 @@ static t_map *ft_map_init(void)
 	return (map);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_map *map;
-	t_point *points;
-	t_fdf *env;
+	t_fdf	*env;
 
 	if (ac == 2)
 	{
@@ -75,9 +85,12 @@ int main(int ac, char **av)
 		env->map = ft_map_init();
 		ft_check(av[1], env->map);
 		env->camera = ft_camera_init(env);
+		env->mouse->button = 0;
 		ft_hook_controls(env);
 		ft_draw(env->map, env);
 		mlx_loop(env->mlx);
 	}
+	else
+		ft_error("Usage: ./fdf <filename>", 0);
 	return (0);
 }

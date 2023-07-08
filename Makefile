@@ -22,7 +22,7 @@ OBJS = $(SRCS:%.c=%.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT_A) $(MLX_A)
+$(NAME): $(OBJS) $(LIBFT_A) $(MLX_A) fdf.h
 	@$(CC) $(OBJS) $(MLXF) -L$(LIBFT) -lft -L$(MLX) -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 	@echo "Linked into executable \033[0;32m$(NAME)\033[0m."
 
