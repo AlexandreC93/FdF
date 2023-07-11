@@ -23,21 +23,21 @@ static t_fdf	*ft_start(const char *name)
 		ft_error("malloc error", 1);
 	env->mlx = mlx_init();
 	if (!env->mlx)
-		ft_error("error connecting to graphics server", 1);
+		ft_error("graphics server error", 1);
 	env->win = mlx_new_window(env->mlx, WIDTH, HEIGHT, title);
 	if (!env->win)
-		ft_error("error initializing window", 1);
+		ft_error("window error", 1);
 	free(title);
 	env->img = mlx_new_image(env->mlx, WIDTH, HEIGHT);
 	if (!env->img)
-		ft_error("error initializing image", 1);
+		ft_error("image error", 1);
 	env->data_addr = mlx_get_data_addr(env->img, &env->bpp, &env->size_line,
 			&env->endian);
 	env->map = NULL;
 	env->camera = NULL;
 	env->mouse = (t_mouse *)malloc(sizeof(t_mouse));
 	if (!env->mouse)
-		ft_error("error initializing mouse", 1);
+		ft_error("mouse error", 1);
 	return (env);
 }
 
@@ -47,7 +47,7 @@ static t_camera	*ft_camera_init(t_fdf *env)
 
 	camera = (t_camera *)malloc(sizeof(t_camera));
 	if (!camera)
-		ft_error("error initializing camera", 1);
+		ft_error("camera error", 1);
 	camera->zoom = ft_min(WIDTH / env->map->width / 2,
 			HEIGHT / env->map->height / 2);
 	camera->x_angle = -0.615472907;
@@ -66,7 +66,7 @@ static t_map	*ft_map_init(void)
 
 	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
-		ft_error("error initializing map", 1);
+		ft_error("map error", 1);
 	map->height = 0;
 	map->width = 0;
 	map->array = NULL;
@@ -91,6 +91,6 @@ int	main(int ac, char **av)
 		mlx_loop(env->mlx);
 	}
 	else
-		ft_error("Usage: ./fdf <filename>", 0);
+		ft_error("Need ./fdf <filename>", 0);
 	return (0);
 }

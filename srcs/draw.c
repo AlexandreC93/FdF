@@ -14,20 +14,20 @@
 
 static void	ft_draw_instructions(t_fdf *env)
 {
+	mlx_string_put(env->mlx, env->win, 5, 80, 0xFFFFFF,
+		"R:            Reset");
+	mlx_string_put(env->mlx, env->win, 5, 40, 0xFFFFFF,
+		"Middle Click: Rotate z");
 	mlx_string_put(env->mlx, env->win, 5, 0, 0xFFFFFF,
 		"Left Click:   Pan");
 	mlx_string_put(env->mlx, env->win, 5, 20, 0xFFFFFF,
 		"Right Click:  Rotate x/y");
-	mlx_string_put(env->mlx, env->win, 5, 40, 0xFFFFFF,
-		"Middle Click: Rotate z");
 	if (env->camera->iso)
 		mlx_string_put(env->mlx, env->win, 5, 60, 0xFFFFFF,
 			"Space:        Toggle projection (Current: Isometric)");
 	else
 		mlx_string_put(env->mlx, env->win, 5, 60, 0xFFFFFF,
 			"Space:        Toggle projection (Current: Parrallel)");
-	mlx_string_put(env->mlx, env->win, 5, 80, 0xFFFFFF,
-		"R:            Reset");
 	mlx_string_put(env->mlx, env->win, 5, 100, 0xFFFFFF,
 		"-/+:          Flatten");
 }
