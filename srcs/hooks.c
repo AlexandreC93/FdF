@@ -44,7 +44,7 @@ void	ft_hook_controls(t_fdf *env)
 	mlx_hook(env->win, 2, 1L << 0, ft_key, env);
 	mlx_hook(env->win, 4, 1L << 2, ft_mouse_down, env);
 	mlx_hook(env->win, 5, 1L << 3, ft_mouse_up, env);
-	mlx_hook(env->win, 6, 1L << 6, ft_mouse_move, env);
+	mlx_hook(env->win, 6, 1L << 13, ft_mouse_move, env);
 	mlx_hook(env->win, 17, 1L << 17 | 1L << 19, ft_close, env);
 }
 

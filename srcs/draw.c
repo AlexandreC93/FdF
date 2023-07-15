@@ -14,21 +14,21 @@
 
 static void	ft_draw_instructions(t_fdf *env)
 {
-	mlx_string_put(env->mlx, env->win, 5, 80, 0xFFFFFF,
+	mlx_string_put(env->mlx, env->win, 5, 100, 0xFFFFFF,
 		"R:            Reset");
-	mlx_string_put(env->mlx, env->win, 5, 40, 0xFFFFFF,
+	mlx_string_put(env->mlx, env->win, 5, 60, 0xFFFFFF,
 		"Middle Click: Rotate z");
-	mlx_string_put(env->mlx, env->win, 5, 0, 0xFFFFFF,
-		"Left Click:   Pan");
 	mlx_string_put(env->mlx, env->win, 5, 20, 0xFFFFFF,
+		"Left Click:   Translate");
+	mlx_string_put(env->mlx, env->win, 5, 40, 0xFFFFFF,
 		"Right Click:  Rotate x/y");
 	if (env->camera->iso)
-		mlx_string_put(env->mlx, env->win, 5, 60, 0xFFFFFF,
+		mlx_string_put(env->mlx, env->win, 5, 80, 0xFFFFFF,
 			"Space:        Toggle projection (Current: Isometric)");
 	else
-		mlx_string_put(env->mlx, env->win, 5, 60, 0xFFFFFF,
+		mlx_string_put(env->mlx, env->win, 5, 80, 0xFFFFFF,
 			"Space:        Toggle projection (Current: Parrallel)");
-	mlx_string_put(env->mlx, env->win, 5, 100, 0xFFFFFF,
+	mlx_string_put(env->mlx, env->win, 5, 120, 0xFFFFFF,
 		"-/+:          Flatten");
 }
 
@@ -36,7 +36,7 @@ void	ft_draw(t_map *map, t_fdf *env)
 {
 	int	x;
 	int	y;
-
+	
 	ft_bzero(env->data_addr, WIDTH * HEIGHT * (env->bpp / 8));
 	y = 0;
 	if (env->camera->x_angle > 0)

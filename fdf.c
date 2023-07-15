@@ -72,13 +72,18 @@ static t_map	*ft_map_init(void)
 	map->array = NULL;
 	map->z_max = 0;
 	map->z_min = 0;
+	map->flag = 1;
 	return (map);
 }
 
 int	main(int ac, char **av)
 {
 	t_fdf	*env;
+	int		fd;
 
+	fd = open(av[1], O_RDONLY);
+	if (fd == -1)
+		ft_error("open error", 1);
 	if (ac == 2)
 	{
 		env = ft_start(av[1]);

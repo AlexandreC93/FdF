@@ -56,9 +56,9 @@ int	ft_mouse_up(int button, int x, int y, void *params)
 static void	ft_move_z(int x, int y, t_fdf *env)
 {
 	if (x < (WIDTH / 2) + env->camera->x_offset)
-		env->camera->z_angle -= (y - env->mouse->prev_y) * 0.002;
+		env->camera->z_angle -= (y - env->mouse->prev_y) * 0.005;
 	else
-		env->camera->z_angle += (y - env->mouse->prev_y) * 0.002;
+		env->camera->z_angle += (y - env->mouse->prev_y) * 0.005;
 	env->mouse->prev_x = x;
 	env->mouse->prev_y = y;
 	ft_draw(env->map, env);
@@ -71,8 +71,8 @@ int	ft_mouse_move(int x, int y, void *params)
 	env = (t_fdf *)params;
 	if (env->mouse->button == MOUSE_CLICK_RIGHT)
 	{
-		env->camera->x_angle += (y - env->mouse->prev_y) * 0.002;
-		env->camera->y_angle += (x - env->mouse->prev_x) * 0.002;
+		env->camera->x_angle += (y - env->mouse->prev_y) * 0.020;
+		env->camera->y_angle += (x - env->mouse->prev_x) * 0.020;
 		env->camera->x_angle = ft_reset_angles(env->camera->x_angle);
 		env->camera->y_angle = ft_reset_angles(env->camera->y_angle);
 		env->mouse->prev_x = x;

@@ -120,8 +120,6 @@ void	ft_check(char *file, t_map *map)
 	map->width = ft_width(file);
 	map->height = ft_height(file);
 	fd = open(file, O_RDONLY);
-	if (fd == -1)
-		ft_error("open error", 1);
 	i = -1;
 	map->array = malloc(sizeof(int **) * map->height);
 	if (!map->array)

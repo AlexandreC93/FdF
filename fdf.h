@@ -55,6 +55,7 @@ typedef struct s_map
 	int	***array;
 	int	z_max;
 	int	z_min;
+	int	flag;
 }	t_map;
 
 typedef struct s_camera

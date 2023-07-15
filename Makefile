@@ -5,7 +5,7 @@ LIBFT_A     = $(addprefix $(LIBFT), libft.a)
 MLX_A       = $(addprefix $(MLX), libmlx.a)
 MLXF		=  -Lmlx_linux -lmlx_Linux
 
-CC          = gcc
+CC          = gcc -Wall -Wextra -Werror
 RM          = rm -f
 SRCS        = fdf.c \
               ./srcs/map.c \
