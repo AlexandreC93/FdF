@@ -79,11 +79,11 @@ int	ft_key(int code, void *params)
 	t_fdf	*env;
 
 	env = (t_fdf *)params;
-	if (code == ARROW_DOWN || code == 0xff54 || code == ARROW_LEFT 
-		|| code == 0xff51 || code == ARROW_UP || code == 0xff52 
+	if (code == ARROW_DOWN || code == 0xff54 || code == ARROW_LEFT
+		|| code == 0xff51 || code == ARROW_UP || code == 0xff52
 		|| code == ARROW_RIGHT || code == 0xff53)
 		ft_translate(code, env);
-	else if (code == MINUS || code == 0xffad || code == PLUS 
+	else if (code == MINUS || code == 0xffad || code == PLUS
 		|| code == 0xffab || code == 0x2d || code == 0x2b)
 		ft_mod_height(code, env);
 	else if (code == SPACE || code == 0x20)
