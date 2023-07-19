@@ -96,7 +96,7 @@ typedef struct s_fdf
 
 int		ft_height(char *filename);
 int		ft_width(char *filename);
-void	ft_check(char *filename, t_map *map);
+void	ft_check(char *filename, t_map *map, t_fdf *env);
 void	ft_draw(t_map *map, t_fdf *env);
 void	ft_pixel(t_fdf *env, int x, int y, int color);
 void	ft_draw_line(t_point s, t_point e, t_fdf *env);
@@ -105,7 +105,8 @@ int		ft_min(int a, int b);
 int		get_default_color(int z, t_map *map);
 void	ft_error(const char *err_msg, int system_function);
 double	ft_reset_angles(double angle);
-
+int		check_map(const char *filename);
+t_map	*ft_map_init(void);
 /*
 Xiaolin Wu line algorithm utils
 */

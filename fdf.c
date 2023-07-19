@@ -17,6 +17,7 @@ static t_fdf	*ft_start(const char *name)
 	t_fdf	*env;
 	char	*title;
 
+	check_map(name);
 	title = ft_strjoin("FdF - ", name);
 	env = (t_fdf *)malloc(sizeof(t_fdf));
 	if (!env)
@@ -60,7 +61,7 @@ static t_camera	*ft_camera_init(t_fdf *env)
 	return (camera);
 }
 
-static t_map	*ft_map_init(void)
+t_map	*ft_map_init(void)
 {
 	t_map	*map;
 
@@ -72,23 +73,18 @@ static t_map	*ft_map_init(void)
 	map->array = NULL;
 	map->z_max = 0;
 	map->z_min = 0;
-	map->flag = 1;
 	return (map);
 }
 
 int	main(int ac, char **av)
 {
 	t_fdf	*env;
-	int		fd;
 
-	fd = open(av[1], O_RDONLY);
-	if (fd == -1)
-		ft_error("open error", 1);
 	if (ac == 2)
 	{
 		env = ft_start(av[1]);
 		env->map = ft_map_init();
-		ft_check(av[1], env->map);
+		ft_check(av[1], env->map, env);
 		env->camera = ft_camera_init(env);
 		env->mouse->button = 0;
 		ft_hook_controls(env);

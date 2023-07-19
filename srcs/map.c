@@ -60,7 +60,7 @@ int	ft_width(char *filename)
 	return (width);
 }
 
-static void	ft_fill_table(int **n, char *line, int width)
+static void	ft_fill_table(int **n, char *line, int width, t_fdf *env)
 {
 	char	**num;
 	int		i;
@@ -84,7 +84,13 @@ static void	ft_fill_table(int **n, char *line, int width)
 		free(num[i]);
 	}
 	if (i != width || num[i])
-		ft_error("error: fdf file has irregular width", 0);
+	{
+		free(num[i]);
+		free(num);
+		free(line);
+		ft_close(env);
+		// ft_error("error: fdf file has irregular width", 0);
+	}
 	free(num);
 }
 
@@ -111,7 +117,7 @@ static void	ft_get_z(t_map *map)
 	}
 }
 
-void	ft_check(char *file, t_map *map)
+void	ft_check(char *file, t_map *map, t_fdf *env)
 {
 	int		fd;
 	char	*line;
@@ -120,6 +126,8 @@ void	ft_check(char *file, t_map *map)
 	map->width = ft_width(file);
 	map->height = ft_height(file);
 	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		ft_error("open error", 1);
 	i = -1;
 	map->array = malloc(sizeof(int **) * map->height);
 	if (!map->array)
@@ -129,7 +137,7 @@ void	ft_check(char *file, t_map *map)
 		map->array[++i] = malloc(sizeof(int *) * map->width);
 		if (!map->array[i])
 			ft_error("malloc error", 1);
-		ft_fill_table(map->array[i], line, map->width);
+		ft_fill_table(map->array[i], line, map->width, env);
 		free(line);
 	}
 	free(line);

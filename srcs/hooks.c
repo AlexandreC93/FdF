@@ -17,23 +17,30 @@ int	ft_close(void *params)
 	t_fdf	*env;
 	int		x;
 	int		y;
+	int		j;
 
 	env = (t_fdf *)params;
 	mlx_destroy_image(env->mlx, env->img);
 	mlx_destroy_window(env->mlx, env->win);
 	mlx_destroy_display(env->mlx);
-	free(env->camera);
-	free(env->mouse);
+	j = 0;
 	y = -1;
 	while (++y < env->map->height)
 	{
-		x = -1;
-		while (++x < env->map->width)
+		x = 0;
+		while (x++ < env->map->width)
+		{
+			if (!env->map->array[y][x - 1])
+				break;
 			free(env->map->array[y][x]);
+			printf("%d", j++);
+		}
 		free(env->map->array[y]);
 	}
 	free(env->map->array);
 	free(env->map);
+	free(env->camera);
+	free(env->mouse);
 	free(env->mlx);
 	free(env);
 	exit(0);

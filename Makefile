@@ -5,7 +5,7 @@ LIBFT_A     = $(addprefix $(LIBFT), libft.a)
 MLX_A       = $(addprefix $(MLX), libmlx.a)
 MLXF		=  -Lmlx_linux -lmlx_Linux
 
-CC          = gcc -Wall -Wextra -Werror
+CC          = gcc -Wall -Wextra -Werror -g
 RM          = rm -f
 SRCS        = fdf.c \
               ./srcs/map.c \
@@ -17,6 +17,7 @@ SRCS        = fdf.c \
               ./srcs/line.c \
               ./srcs/project.c \
               ./srcs/keyboard.c \
+			  ./srcs/tools.c \
 
 OBJS = $(SRCS:%.c=%.o)
 
